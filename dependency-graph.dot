@@ -1,0 +1,28 @@
+digraph doesntMatter {
+label = "plugin dependency/call graph"
+    layout=dot
+    rankdir=BT
+
+    bgcolor="transparent"
+    node [fontsize=17, colorscheme=set312, style=filled, shape=none]
+    edge [fontname=Helvetica]
+    edge [style="setlinewidth(2)", color=brown]
+
+    a [fillcolor=1, label = "Project Management Zsh Plugin", shape=ellipse]
+
+    subgraph cluster_1 {
+        label="coreutils";
+        rank="same"
+        b [fillcolor=2, label = "find"]
+        c [fillcolor=3, label = "tree"]
+    }
+
+    subgraph cluster_2 {
+        label="external deps";
+        rank="min"
+        d [fillcolor=6, label = "termgraph"]
+        e [fillcolor=5, label = "fzf"]
+    }
+
+    {b,c,d,e} -> a
+}
